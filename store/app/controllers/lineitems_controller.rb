@@ -2,10 +2,11 @@ class LineitemsController < ApplicationController
 
   include CurrentCart
 
-  before_action :set_cart
+  before_action :set_cart, only: [:create]
 
   before_action :set_lineitem, only: [:show, :edit, :update, :destroy]
 
+  skip_before_action :authorize
   # GET /lineitems
   # GET /lineitems.json
   def index
@@ -36,7 +37,7 @@ class LineitemsController < ApplicationController
     respond_to do |format|
       if @lineitem.save
         format.html { redirect_to shopper_url}
-        format.js
+        format.js {@current_item = @lineitem }
         format.json { render :show, status: :created, location: @lineitem }
       else
         format.html { render :new }

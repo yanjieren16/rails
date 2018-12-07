@@ -1,6 +1,16 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: [:show, :edit, :update, :destroy]
 
+  rescue_from ActiveRecord::RecordNotFound, with: :invaild_cart
+
+  skip_before_action :authorize
+  
+
+  
+  def invaild_cart
+    logger.error "Attempt to access cart #{params[:id]}"
+    redirect_to shopper_url, notice: 'Invaild cart'
+  end
   # GET /carts
   # GET /carts.json
   def index

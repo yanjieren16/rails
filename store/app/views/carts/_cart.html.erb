@@ -1,3 +1,4 @@
+<% unless cart.lineitems.empty? %>
 <h3>Items in your shopping cart</h3>
 <table>
 <%= render cart.lineitems%>
@@ -8,3 +9,4 @@
 </table>
 <%= button_to 'Check Out', new_order_path, method: :get %>
 <%= button_to 'Empty Cart', cart, method: :delete, data: {confirm: 'Are you sure?'} %>
+<% end %>

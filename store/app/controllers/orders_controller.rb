@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   include CurrentCart
   before_action :set_cart, only: [:new, :create]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  skip_before_action :authorize
   # GET /orders
   # GET /orders.json
   def index
@@ -31,6 +31,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.add_items_from_cart(@cart)
 
     respond_to do |format|
       if @order.save
