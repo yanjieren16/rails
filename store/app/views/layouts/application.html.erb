@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Store</title>
+    <title>Blue's Online Book Store</title>
     
     <%# csp_meta_tag %>
 
@@ -10,7 +10,7 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body class='<%= controller.controller_name%>'>
+  <body class='<%= controller.controller_name %>'>
     <div id="banner">
       <%= image_tag("logo.png") %>
       <%= @page_title || "Our Products" %>
